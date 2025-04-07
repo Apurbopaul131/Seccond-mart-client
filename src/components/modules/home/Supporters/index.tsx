@@ -34,7 +34,7 @@ const Supporters = () => {
       <h2 className="text-4xl font-bold text-gray-900 mb-2 text-center">
         Our Supporters
       </h2>
-      <Marquee pauseOnHover={true}>
+      <Marquee pauseOnClick={true}>
         {supportersLogos.map(({ name, logo }, idx) => (
           <div key={idx} className="mr-12">
             <Image src={logo} alt={name} width={80} height={50}></Image>

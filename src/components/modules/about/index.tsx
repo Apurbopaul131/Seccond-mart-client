@@ -4,7 +4,7 @@ import StaticMarketplaceInfo from "./StaticMarketplaceInfo";
 const About = () => {
   return (
     <>
-      <Banner />
+      <Banner routePath="About" />
       <StaticMarketplaceInfo />
     </>
   );

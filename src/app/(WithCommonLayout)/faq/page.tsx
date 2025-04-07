@@ -1,7 +1,11 @@
+import FAQ from "@/components/modules/faq";
+import Banner from "@/components/ui/core/Banner";
+
 const FaqPage = () => {
   return (
     <div>
-      <h1>This is faq page</h1>
+      <Banner routePath="FAQ" />
+      <FAQ />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Banner from "@/components/ui/core/Banner";
 const ContactPage = () => {
   return (
     <div>
-      <Banner />
+      <Banner routePath="Contact" />
     </div>
   );
 };
