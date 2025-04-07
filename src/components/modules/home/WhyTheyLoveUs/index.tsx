@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function WhyTheyLoveUs() {
   return (
-    <section className="bg-gray-400 mb-44">
+    <section className="bg-gray-500 mb-44">
       <div className="container mx-auto px-4 text-center rounded-xl bg-white shadow-lg py-14 relative top-30">
         <div className="absolute inset-0 opacity-5 rounded-xl"></div>
         <div className="relative z-10">

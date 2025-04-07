@@ -10,8 +10,8 @@ type ReviewCardProps = {
 export default function ReviewCard({ reviewText, name }: ReviewCardProps) {
   console.log(name);
   return (
-    <Card className="w-full max-w-sm mx-auto text-center shadow-md p-4">
-      <CardContent>
+    <Card className="w-full max-w-sm mx-auto text-center shadow-md p-4 h-[320px]">
+      <CardContent className="h-full">
         <div className="flex flex-col items-center gap-4">
           <Image
             src={"https://github.com/shadcn.png"}
@@ -20,6 +20,9 @@ export default function ReviewCard({ reviewText, name }: ReviewCardProps) {
             height={80}
             className="rounded-full"
           />
+          <h2 className="text-xl font-semibold text-muted-foreground">
+            {name}
+          </h2>
           <p className="text-sm text-gray-700">{reviewText}</p>
         </div>
       </CardContent>

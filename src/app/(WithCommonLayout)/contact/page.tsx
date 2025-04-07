@@ -1,7 +1,9 @@
+import Banner from "@/components/ui/core/Banner";
+
 const ContactPage = () => {
   return (
     <div>
-      <h1>This is contact page</h1>
+      <Banner />
     </div>
   );
 };
