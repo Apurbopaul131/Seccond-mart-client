@@ -7,13 +7,14 @@ import { IProduct } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { CircleX, Eye } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 const ManageWishlist = ({ products }: { products: IProduct[] }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-
+  const router = useRouter();
   const handleDelete = (id: string) => {
     setSelectedId(id);
     setModalOpen(true);
@@ -83,6 +84,7 @@ const ManageWishlist = ({ products }: { products: IProduct[] }) => {
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
           <button
+            onClick={() => router.push(`/product/${row.original._id}`)}
             className="text-gray-500 cursor-pointer hover:text-green-500"
             title="View"
           >

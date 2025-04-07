@@ -15,7 +15,10 @@ const FeaturedProducts = async () => {
         <div className="flex items-center justify-between">
           <h2 className="font-bold text-2xl">Featured Products</h2>
           <Link href="/products">
-            <Button variant="outline" className="rounded-full cursor-pointer">
+            <Button
+              variant="outline"
+              className="rounded-full cursor-pointer text-muted-foreground border-muted-foreground hover:border-secondary hover:text-secondary"
+            >
               view all
             </Button>
           </Link>

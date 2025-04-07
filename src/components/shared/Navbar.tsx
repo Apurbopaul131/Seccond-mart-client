@@ -132,7 +132,9 @@ const Navbar = () => {
                     <Link href={"/dashboard"}>
                       <DropdownMenuItem>Dashboard</DropdownMenuItem>
                     </Link>
-                    <DropdownMenuItem>My Shop</DropdownMenuItem>
+                    <Link href={"/dashboard/wishlist"}>
+                      <DropdownMenuItem>My Wishlist</DropdownMenuItem>
+                    </Link>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem

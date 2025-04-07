@@ -22,24 +22,36 @@ import { IProduct } from "@/types";
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const ProductCard = ({ product }: { product: IProduct }) => {
   const { user } = useUser();
-  const handleAddToWishList = async (productId: string) => {
+  const router = useRouter();
+  const handleAddToWishList = async (
+    productId: string,
+    productUserId: string
+  ) => {
     const modifiedData = {
       userId: user?.userId,
       items: [productId],
     };
-    try {
-      const result = await createWishlist(modifiedData);
-      if (result?.success) {
-        toast.success(result?.message);
-      } else {
-        toast.error(result?.message);
+    if (!user?.userId) {
+      router.push("/login");
+      toast.error("Please login..");
+    } else if (user?.userId === productUserId) {
+      toast.error("User do not added his own product.");
+    } else {
+      try {
+        const result = await createWishlist(modifiedData);
+        if (result?.success) {
+          toast.success(result?.message);
+        } else {
+          toast.error(result?.message);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
   return (
@@ -102,11 +114,11 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  disabled={
-                    product?.status === "sold" || !user?.userId ? true : false
+                  disabled={product?.status === "sold" ? true : false}
+                  className="w-8 h-8 p-0 flex items-center justify-center rounded-full cursor-pointer text-muted-foreground border-muted-foreground hover:text-secondary hover:border-secondary"
+                  onClick={() =>
+                    handleAddToWishList(product?._id, product?.userId._id)
                   }
-                  className="w-8 h-8 p-0 flex items-center justify-center rounded-full cursor-pointer"
-                  onClick={() => handleAddToWishList(product?._id)}
                 >
                   <Heart />
                 </Button>

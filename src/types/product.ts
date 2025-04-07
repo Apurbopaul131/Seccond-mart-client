@@ -22,7 +22,14 @@ type TProductStatus = "available" | "sold";
 export interface IProduct {
   _id: string;
   title: string;
-  userId: string;
+  userId: {
+    _id: string;
+    name: string;
+    phoneNumber: string;
+    email: string;
+    role: "user" | "admin";
+    isBlocked: boolean;
+  };
   condition: TProductCondition;
   brand: string;
   price: number;

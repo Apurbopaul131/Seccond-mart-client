@@ -11,7 +11,6 @@ const SearchBar = ({ searchOption }: { searchOption: string }) => {
   const { replace } = useRouter();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTermEvent = e.target.value;
-    console.log(searchTermEvent);
     setSearchTerm(searchTermEvent);
     const params = new URLSearchParams(searchParams);
     if (searchTermEvent) {
