@@ -18,7 +18,7 @@ const AllProductPage = async (props: {
   console.log(products);
 
   return (
-    <div className="">
+    <div className="mb-10">
       <SearchBar searchOption={searchObj?.searchTerm || ""} />
       <ProductsContainer products={products} />
     </div>
