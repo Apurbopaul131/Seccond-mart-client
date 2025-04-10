@@ -100,7 +100,7 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
         <div className="flex items-center space-x-3">
           <Button
             className="text-primary-foreground cursor-pointer"
-            title="View"
+            title="mark as sold"
             disabled={row.original.status === "sold" ? true : false}
             onClick={() => handleMarkAsSold(row.original._id)}
           >

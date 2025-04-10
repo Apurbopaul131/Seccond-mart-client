@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { SMTable } from "@/components/ui/core/SMTable";
 import { ITransaction } from "@/types/transaction";
 
@@ -7,10 +6,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
 const SalesHistory = ({ trnasactions }: { trnasactions: ITransaction[] }) => {
-  const handleCompleted = (productId: string) => {
-    console.log(productId);
-  };
-
   const columns: ColumnDef<ITransaction>[] = [
     {
       accessorKey: "itemID.name",
@@ -44,22 +39,19 @@ const SalesHistory = ({ trnasactions }: { trnasactions: ITransaction[] }) => {
       cell: ({ row }) => <span>${row.original.itemID.price.toFixed(2)}</span>,
     },
     {
+      accessorKey: "createdAt",
+      header: "Time",
+      cell: ({ row }) => <span>{row.original.createdAt.split("T")[0]}</span>,
+    },
+    {
+      accessorKey: "transaction.id",
+      header: "TrnxID",
+      cell: ({ row }) => <span>{row.original.transaction.id}</span>,
+    },
+    {
       accessorKey: "status",
       header: "Status",
       cell: ({ row }) => <span>{row.original.status}</span>,
-    },
-    {
-      accessorKey: "action",
-      header: "Action",
-      cell: ({ row }) => (
-        <Button
-          className="cursor-pointer hover:text-blue-500"
-          title="View"
-          onClick={() => handleCompleted(row.original._id)}
-        >
-          Completed
-        </Button>
-      ),
     },
   ];
   return (

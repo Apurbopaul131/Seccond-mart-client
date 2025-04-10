@@ -10,7 +10,7 @@ const SingleProductPage = async ({
   const { data: product } = await getSingleListing(productId);
 
   return (
-    <div className="bg-muted border-2">
+    <div className="">
       <ProductDetails product={product} />
     </div>
   );

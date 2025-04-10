@@ -13,7 +13,6 @@ export const createListing = async (data: any) => {
       body: JSON.stringify(data),
     });
     const result = await res.json();
-    console.log(result);
     return result;
   } catch (error: any) {
     return new Error(error);
@@ -107,14 +106,12 @@ export const updateSingleListing = async (productId: string, data: any) => {
 export const MarkAsSolidListing = async (productId: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/listings/${productId}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/listings/mark-sold/${productId}`,
       {
         method: "PUT",
         headers: {
           Authorization: (await cookies()).get("accessToken")!.value,
-          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status: "sold" }),
       }
     );
     const result = res.json();

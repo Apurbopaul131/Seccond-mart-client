@@ -2,6 +2,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
+import { createOrder } from "@/services/transactions";
 import { createWishlist } from "@/services/wishlist";
 import { IProduct } from "@/types";
 import {
@@ -47,6 +48,29 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
       } catch (error) {
         console.error(error);
       }
+    }
+  };
+  const handleProceedOrder = async (product: IProduct) => {
+    try {
+      if (!user?.userId) {
+        toast.error("please login...");
+        router.push("/login");
+      } else {
+        const modifiedData = {
+          buyerID: user?.userId,
+          sellerID: product?.userId?._id,
+          itemID: product?._id,
+        };
+        const result = await createOrder(modifiedData);
+        if (result?.success && result?.data?.checkout_url) {
+          toast.success(result?.message);
+          window.location.href = result?.data?.checkout_url;
+        } else {
+          toast.error(result?.message);
+        }
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   return (
@@ -101,10 +125,15 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
               <span className="font-semibold">Description:</span>
               {product?.description}
             </p>
+            {product.status === "sold" && (
+              <p className="text-destructive">product are already sold!</p>
+            )}
             <div className="flex justify-end">
               <Button
                 variant={"outline"}
                 className="border-1 border-primary cursor-pointer p-2 text-primary font-semibold"
+                onClick={() => handleProceedOrder(product)}
+                disabled={product?.status === "sold"}
               >
                 Proced Checkout
                 <ArrowRight />
