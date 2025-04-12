@@ -7,14 +7,20 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { useUser } from "@/context/UserContext";
 import { Bot, Settings, SquareTerminal } from "lucide-react";
+import { useRouter } from "next/navigation";
 import * as React from "react";
+
 // This is sample data.
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const router = useRouter();
   const { user } = useUser();
   const data = {
     user: {
@@ -70,10 +76,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex justify-center items-center gap-3">
-          <Logo />
-          <h1>NextMart</h1>
-        </div>
+        <SidebarMenu>
+          <SidebarMenuItem
+            className="cursor-pointer"
+            onClick={() => router.push("/")}
+          >
+            <SidebarMenuButton size="lg" asChild>
+              <a>
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Logo />
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold">Seccond Mart</span>
+                  <span className="">v1.0.0</span>
+                </div>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

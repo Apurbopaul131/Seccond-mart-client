@@ -1,4 +1,17 @@
-export const protectedRoutes = ["/login", "/dashboard"];
+export const protectedRoutes = [
+  "/payment/verify",
+  "/dashboard",
+  "/dashboard/:page",
+  "/dashboard/listing/create-listing",
+  "/dashboard/listing",
+  "/dashboard/sales-history",
+  "/dashboard/purchase-history",
+  "/dashboard/wishlist",
+  "/dashboard/profile",
+  "/dashboard/admin",
+  "/dashboard/admin/user-management",
+  "/dashboard/admin/listings",
+];
 export const productCategories = [
   "Electronics",
   "Home Appliances",

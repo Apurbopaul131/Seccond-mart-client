@@ -4,7 +4,12 @@ import HeroSection from "@/components/modules/home/heroSection";
 import HowItWorks from "@/components/modules/home/HowItWorks";
 import Supporters from "@/components/modules/home/Supporters";
 import WhyTheyLoveUs from "@/components/modules/home/WhyTheyLoveUs";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "SeccondMart | Home",
+  description: "This is home page of seccond mart project",
+};
 export default function HomePage() {
   return (
     <>

@@ -17,6 +17,10 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { protectedRoutes } from "@/constants";
+import { useUser } from "@/context/UserContext";
+import { userLogut } from "@/services/authServices";
+import { usePathname, useRouter } from "next/navigation";
 
 export function NavUser({
   user,
@@ -28,6 +32,18 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const currentUser = useUser();
+  const pathname = usePathname();
+  const router = useRouter();
+  const handleUserLogOut = () => {
+    userLogut();
+    currentUser.setIsLoading(true);
+    setTimeout(() => {
+      if (protectedRoutes.some((route) => pathname.match(route))) {
+        router.push("/");
+      }
+    }, 200);
+  };
 
   return (
     <SidebarMenu>
@@ -68,7 +84,7 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleUserLogOut}>
               <LogOut />
               Log out
             </DropdownMenuItem>

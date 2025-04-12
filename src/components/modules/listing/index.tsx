@@ -6,7 +6,7 @@ import { deleteListing, MarkAsSolidListing } from "@/services/listing";
 import { IProduct } from "@/types";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, Plus, Trash } from "lucide-react";
+import { Edit, Eye, Plus, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -106,6 +106,13 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
           >
             Mark Sold
           </Button>
+          <button
+            className="text-gray-500 cursor-pointer hover:text-green-500"
+            title="view"
+            onClick={() => router.push(`/product/${row.original._id}`)}
+          >
+            <Eye className="w-5 h-5" />
+          </button>
 
           <button
             className="text-gray-500 cursor-pointer hover:text-green-500"

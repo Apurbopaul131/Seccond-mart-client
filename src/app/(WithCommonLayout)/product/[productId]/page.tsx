@@ -10,7 +10,7 @@ const SingleProductPage = async ({
   const { data: product } = await getSingleListing(productId);
 
   return (
-    <div className="">
+    <div>
       <ProductDetails product={product} />
     </div>
   );

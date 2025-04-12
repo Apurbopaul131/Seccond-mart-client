@@ -1,7 +1,14 @@
 import ProductsContainer from "@/components/modules/products";
 import SearchBar from "@/components/modules/products/SearchBar";
-import { getAllListing } from "@/services/listing";
+import SMPagination from "@/components/ui/core/SMPagination";
 
+import { getAllListing } from "@/services/listing";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "SeccondMart | Products",
+  description: "This is all product page of seccond mart project",
+};
 const AllProductPage = async (props: {
   searchParams?: Promise<{
     searchTerm?: string;
@@ -11,16 +18,17 @@ const AllProductPage = async (props: {
   }>;
 }) => {
   const searchObj = await props.searchParams;
-  console.log(searchObj);
+
   const params = new URLSearchParams(searchObj);
   const query = params.toString() ? `?${params.toString()}` : "";
-  const { data: products } = await getAllListing(query);
-  console.log(products);
-
+  const { data: products, meta } = await getAllListing(query);
   return (
     <div className="mb-10">
       <SearchBar searchOption={searchObj?.searchTerm || ""} />
       <ProductsContainer products={products} />
+      <div className="container mx-auto my-5">
+        <SMPagination totalPage={meta?.totalPage} />
+      </div>
     </div>
   );
 };

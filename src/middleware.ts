@@ -7,8 +7,17 @@ export const middleware = async (req: NextRequest) => {
   const authRoutes = ["/login", "/register"];
   const { pathname } = req.nextUrl;
   const roleBasedPrivateRoutes = {
-    user: [/^\/user/, /^\/create-shop/],
-    admin: [/^\/admin/],
+    user: [
+      "/dashboard",
+      "/dashboard/listing",
+      "/dashboard/listing/create-listing",
+      "/dashboard/sales-history",
+      "/dashboard/purchase-history",
+      "/dashboard/wishlist",
+      "/dashboard/profile",
+      /^\/payment/,
+    ],
+    admin: [/admin/],
   };
   //Non-loggedin user
   if (!userInfo) {
@@ -26,7 +35,13 @@ export const middleware = async (req: NextRequest) => {
     roleBasedPrivateRoutes[(userInfo as IUser)?.role]
   ) {
     const routes = roleBasedPrivateRoutes[(userInfo as IUser)?.role];
-    if (routes.some((route) => pathname.match(route))) {
+    console.log(pathname);
+    console.log(routes);
+    if (
+      routes.some((route) =>
+        typeof route === "string" ? pathname === route : route.test(pathname)
+      )
+    ) {
       return NextResponse.next();
     }
   }
@@ -36,10 +51,17 @@ export const middleware = async (req: NextRequest) => {
 export const config = {
   matcher: [
     "/login",
-    "/create-shop",
-    "/admin",
-    "/admin/:page",
-    "/user",
-    "/user/:page",
+    "/payment/verify",
+    "/dashboard",
+    "/dashboard/:page",
+    "/dashboard/listing/create-listing",
+    "/dashboard/listing",
+    "/dashboard/sales-history",
+    "/dashboard/purchase-history",
+    "/dashboard/wishlist",
+    "/dashboard/profile",
+    "/dashboard/admin",
+    "/dashboard/admin/user-management",
+    "/dashboard/admin/listings",
   ],
 };

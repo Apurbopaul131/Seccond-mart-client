@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "SeccondMart | Dashboard",
+  description: "This is user Dashboard page of seccond mart project",
+};
 const UserDashboardPage = () => {
   return (
     <div>

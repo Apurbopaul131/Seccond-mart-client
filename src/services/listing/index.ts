@@ -39,6 +39,7 @@ export const getAllListing = async (query: string) => {
       `${process.env.NEXT_PUBLIC_BASE_API}/listings${query}`,
       {
         next: { tags: ["PRODUCT"] },
+        cache: "no-cache",
       }
     );
     const result = res.json();
@@ -48,15 +49,18 @@ export const getAllListing = async (query: string) => {
   }
 };
 
-export const getMeAllListing = async () => {
+export const getMeAllListing = async (query: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/me`, {
-      method: "GET",
-      headers: {
-        Authorization: (await cookies()).get("accessToken")!.value,
-      },
-      next: { tags: ["PRODUCT"] },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API}/listings/me${query}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: (await cookies()).get("accessToken")!.value,
+        },
+        next: { tags: ["PRODUCT"] },
+      }
+    );
     const result = res.json();
     return result;
   } catch (error: any) {
