@@ -11,6 +11,7 @@ export const protectedRoutes = [
   "/dashboard/admin",
   "/dashboard/admin/user-management",
   "/dashboard/admin/listings",
+  "/messages",
 ];
 export const productCategories = [
   "Electronics",

@@ -8,7 +8,6 @@ type ReviewCardProps = {
 };
 
 export default function ReviewCard({ reviewText, name }: ReviewCardProps) {
-  console.log(name);
   return (
     <Card className="w-full max-w-sm mx-auto text-center shadow-md p-4 h-[320px]">
       <CardContent className="h-full">

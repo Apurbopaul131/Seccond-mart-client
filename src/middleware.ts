@@ -10,12 +10,15 @@ export const middleware = async (req: NextRequest) => {
     user: [
       "/dashboard",
       "/dashboard/listing",
+      "/dashboard/sold-product",
+      "/dashboard/purchase-product",
       "/dashboard/listing/create-listing",
       "/dashboard/sales-history",
       "/dashboard/purchase-history",
       "/dashboard/wishlist",
       "/dashboard/profile",
       /^\/payment/,
+      "/messages",
     ],
     admin: [/admin/],
   };
@@ -35,8 +38,7 @@ export const middleware = async (req: NextRequest) => {
     roleBasedPrivateRoutes[(userInfo as IUser)?.role]
   ) {
     const routes = roleBasedPrivateRoutes[(userInfo as IUser)?.role];
-    console.log(pathname);
-    console.log(routes);
+
     if (
       routes.some((route) =>
         typeof route === "string" ? pathname === route : route.test(pathname)
@@ -56,6 +58,8 @@ export const config = {
     "/dashboard/:page",
     "/dashboard/listing/create-listing",
     "/dashboard/listing",
+    "/dashboard/sold-product",
+    "/dashboard/purchase-product",
     "/dashboard/sales-history",
     "/dashboard/purchase-history",
     "/dashboard/wishlist",
@@ -63,5 +67,6 @@ export const config = {
     "/dashboard/admin",
     "/dashboard/admin/user-management",
     "/dashboard/admin/listings",
+    "/messages",
   ],
 };

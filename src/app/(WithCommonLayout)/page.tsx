@@ -5,6 +5,7 @@ import HowItWorks from "@/components/modules/home/HowItWorks";
 import Supporters from "@/components/modules/home/Supporters";
 import WhyTheyLoveUs from "@/components/modules/home/WhyTheyLoveUs";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "SeccondMart | Home",
@@ -13,12 +14,14 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <FeaturedProducts />
-      <HowItWorks />
-      <WhyTheyLoveUs />
-      <Supporters />
-      <ClientReview />
+      <Suspense>
+        <HeroSection />
+        <FeaturedProducts />
+        <HowItWorks />
+        <WhyTheyLoveUs />
+        <Supporters />
+        <ClientReview />
+      </Suspense>
     </>
   );
 }

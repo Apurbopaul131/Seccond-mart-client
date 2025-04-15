@@ -1,10 +1,28 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@/context/UserContext";
+import { sendMessage } from "@/services/messages";
 import { createOrder } from "@/services/transactions";
 import { createWishlist } from "@/services/wishlist";
 import { IProduct } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ArrowRight,
   Eye,
@@ -18,12 +36,52 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
 
 const ProductDetails = ({ product }: { product: IProduct }) => {
   const [viewNumber, setNumberView] = useState(false);
   const { user } = useUser();
   const router = useRouter();
+  const formSchema = z.object({
+    message: z
+      .string({
+        invalid_type_error: "Message must be string",
+        required_error: "Message must be required",
+      })
+      .min(1, { message: "Mesage length must be one" }),
+  });
+  const form = useForm<z.infer<typeof formSchema>>({
+    defaultValues: {
+      message: "",
+    },
+    resolver: zodResolver(formSchema),
+  });
+
+  const handleMessageSubmit = async (data: z.infer<typeof formSchema>) => {
+    if (!user?.userId) {
+      toast.error("You are not Authorized.please login...");
+      router.push("/login");
+    } else {
+      const modifiedData = {
+        senderID: user?.userId,
+        receiverID: product?.userId?._id,
+        ...data,
+      };
+      try {
+        const result = await sendMessage(modifiedData);
+        if (result?.success) {
+          toast.success(result?.message);
+          form.reset();
+        } else {
+          toast.error(result?.message);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
   const handleAddToWishList = async (
     productId: string,
     productUserId: string
@@ -181,10 +239,47 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
             </div>
           </div>
           <div className="p-5">
-            <Button className="w-full text-center p-8 text-white">
-              <MessageCircle className="w-6 h-6" />
-              Chat
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  disabled={product?.status === "sold"}
+                  className="w-full text-center p-8 text-white"
+                >
+                  <MessageCircle className="w-6 h-6" />
+                  Chat
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle></DialogTitle>
+                </DialogHeader>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(handleMessageSubmit)}>
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Type your message here."
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="flex justify-end mt-5">
+                      <Button type="submit" className="cursor-pointer">
+                        Submit
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </DialogContent>
+            </Dialog>
           </div>
           <div className="px-5 flex justify-center items-center gap-3 text-muted-foreground">
             <div

@@ -70,7 +70,6 @@ export default function CreateListingForm() {
       images: imagesArr,
     };
 
-    console.log(modifiedData);
     try {
       const result = await createListing(modifiedData);
       if (result?.success) {

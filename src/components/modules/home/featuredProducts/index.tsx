@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ui/core/ProductCard";
 
-import { getAllListing } from "@/services/listing";
-
 import { IProduct } from "@/types";
 import Link from "next/link";
 
 const FeaturedProducts = async () => {
-  const { data: products } = await getAllListing("");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings`, {
+    next: { revalidate: 30 },
+  });
+  const { data: products } = await res.json();
 
   return (
     <div className="py-10">

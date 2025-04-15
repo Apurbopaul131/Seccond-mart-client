@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Seccond Mart Shop",
+  title: "SeccondMart Shop",
   description: "This is used for buy and sell seccond hand product.",
 };
 

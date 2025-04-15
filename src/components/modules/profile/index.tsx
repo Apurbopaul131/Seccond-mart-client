@@ -27,7 +27,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export default function UserProfileForm({ user }: { user: IUser }) {
-  console.log("profile", user?.userId);
   const [enableEdit, setEnableEdit] = useState(false);
   const form = useForm({
     defaultValues: {

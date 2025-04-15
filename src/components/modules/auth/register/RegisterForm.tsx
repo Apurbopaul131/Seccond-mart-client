@@ -31,10 +31,9 @@ export default function RegisterForm() {
   const passwordConfirm = form.watch("passwordConfirm");
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     try {
       const res = await registeredUser(data);
-      console.log(res);
+
       if (res?.success) {
         toast.success(res?.message);
         form.reset();

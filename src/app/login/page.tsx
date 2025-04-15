@@ -1,5 +1,6 @@
 import LoginForm from "@/components/modules/auth/login/LoginForm";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "SeccondMart | Login",
@@ -8,7 +9,9 @@ export const metadata: Metadata = {
 const LoginPage = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
-      <LoginForm />
+      <Suspense>
+        <LoginForm />
+      </Suspense>
     </div>
   );
 };

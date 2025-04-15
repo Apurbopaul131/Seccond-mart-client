@@ -9,15 +9,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import ReCAPTCHA from "react-google-recaptcha";
 
 import Logo from "@/app/assets/Logo";
 import { useUser } from "@/context/UserContext";
-import { loginUser, reCaptchaTokenVerification } from "@/services/authServices";
+import { loginUser } from "@/services/authServices";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { loginSchema } from "./loginValidation";
@@ -27,8 +26,8 @@ export default function LoginForm() {
   const searchTerms = searchParams.get("redirectPath");
   const router = useRouter();
   const currentUser = useUser();
-  const [reChaptchaVerificationStatus, setReChaptchaVerificationStatus] =
-    useState(false);
+  // const [reChaptchaVerificationStatus, setReChaptchaVerificationStatus] =
+  //   useState(false);
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
@@ -36,16 +35,16 @@ export default function LoginForm() {
   const {
     formState: { isSubmitting },
   } = form;
-  const handleRecaptcha = async (value: string | null) => {
-    try {
-      const res = await reCaptchaTokenVerification(value!);
-      if (res?.success) {
-        setReChaptchaVerificationStatus(true);
-      }
-    } catch (err: any) {
-      console.error(err);
-    }
-  };
+  // const handleRecaptcha = async (value: string | null) => {
+  //   try {
+  //     const res = await reCaptchaTokenVerification(value!);
+  //     if (res?.success) {
+  //       setReChaptchaVerificationStatus(true);
+  //     }
+  //   } catch (err: any) {
+  //     console.error(err);
+  //   }
+  // };
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
@@ -53,7 +52,7 @@ export default function LoginForm() {
         toast.success(res?.message);
         form.reset();
         currentUser.setIsLoading(true);
-        console.log(currentUser);
+
         if (searchTerms) {
           setTimeout(() => {
             router.push(searchTerms);
@@ -110,13 +109,13 @@ export default function LoginForm() {
               </FormItem>
             )}
           />
-          <ReCAPTCHA
+          {/* <ReCAPTCHA
             sitekey={`${process.env.NEXT_PUBLIC_CLIENT_RECAPTCHA}`}
             onChange={handleRecaptcha}
-          />
+          /> */}
           <Button
             type="submit"
-            disabled={reChaptchaVerificationStatus ? false : true}
+            // disabled={reChaptchaVerificationStatus ? false : true}
             className="mt-5 w-full"
           >
             {isSubmitting ? "Loginig...." : "Login"}

@@ -16,7 +16,6 @@ const ImagePreviewer = ({
   setImagePreview,
   className,
 }: TImangePreviewer) => {
-  console.log(imagePreview);
   const handleRemove = (index: number) => {
     setImageFiles((prev) => prev.filter((_, idx) => idx !== index));
     setImagePreview((prev) => prev.filter((_, idx) => idx !== index));

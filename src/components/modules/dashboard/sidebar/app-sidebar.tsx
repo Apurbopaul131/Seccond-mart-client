@@ -13,7 +13,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { useUser } from "@/context/UserContext";
-import { Bot, Settings, SquareTerminal } from "lucide-react";
+import { Bot, MessageCircle, Settings, SquareTerminal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
@@ -70,11 +70,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           },
         ],
       },
+      {
+        title: "Communication & Transactions",
+        url: "#",
+        icon: MessageCircle,
+        items: [
+          {
+            title: "Track Sold Product",
+            url: "/dashboard/sold-product",
+          },
+          {
+            title: "Track Purchase Product",
+            url: "/dashboard/purchase-product",
+          },
+          {
+            title: "Messages",
+            url: "/messages",
+          },
+        ],
+      },
     ],
   };
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar className="bg-gray-500 text-muted" collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem

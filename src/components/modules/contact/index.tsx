@@ -3,7 +3,7 @@ import { Facebook, Instagram, Youtube } from "lucide-react";
 
 const ContactDetails = () => {
   return (
-    <div className="grid items-center grid-cols-2 gap-8 container mx-auto my-20">
+    <div className="grid grid-cols-1 items-center md:grid-cols-2 gap-8 container mx-auto my-20">
       <section className="px-4">
         <Button className="mb-4 px-6 py-2 text-sm bg-secondary hover:bg-blue-700 text-white rounded-md">
           How Can We Help?

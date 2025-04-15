@@ -41,7 +41,7 @@ export default function UpdateListingForm({ product }: { product: IProduct }) {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const currentUser = useUser();
-  console.log(product?.location);
+
   const form = useForm({
     defaultValues: {
       title: product?.title || "",
@@ -71,7 +71,7 @@ export default function UpdateListingForm({ product }: { product: IProduct }) {
       userId: currentUser?.user?.userId,
       images: imagesArr,
     };
-    console.log(modifiedData);
+
     try {
       const result = await updateSingleListing(product._id, modifiedData);
       if (result?.success) {
@@ -268,7 +268,7 @@ export default function UpdateListingForm({ product }: { product: IProduct }) {
           </div>
 
           <Button type="submit" className="mt-5 w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Adding Product....." : "Add Product"}
+            {isSubmitting ? "Update Product....." : "Update Product"}
           </Button>
         </form>
       </Form>
