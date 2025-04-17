@@ -143,12 +143,9 @@ export default function CreateListingForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Category</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="cursor-pointer w-full">
                         <SelectValue placeholder="Select Product Category" />
                       </SelectTrigger>
                     </FormControl>
@@ -172,12 +169,9 @@ export default function CreateListingForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Product Condition</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="cursor-pointer w-full">
                         <SelectValue placeholder="Select Product Conditon" />
                       </SelectTrigger>
                     </FormControl>
@@ -200,12 +194,9 @@ export default function CreateListingForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Location</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="cursor-pointer w-full">
                         <SelectValue placeholder="Select location" />
                       </SelectTrigger>
                     </FormControl>

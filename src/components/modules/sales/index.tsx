@@ -13,12 +13,16 @@ const SalesHistory = ({ trnasactions }: { trnasactions: ITransaction[] }) => {
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
           <Image
-            src={row.original.itemID.images[0]}
+            src={
+              row.original.itemID.images[0] ||
+              "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"
+            }
             alt={row.original.buyerID.name}
             width={40}
             height={40}
             className="w-8 h-8 rounded-full"
           />
+
           <span className="truncate">{row.original.itemID.title}</span>
         </div>
       ),
@@ -56,6 +60,7 @@ const SalesHistory = ({ trnasactions }: { trnasactions: ITransaction[] }) => {
   ];
   return (
     <div className="space-y-3">
+      <h1 className="text-xl font-bold">Sales History</h1>
       <SMTable columns={columns} data={trnasactions || []} />
     </div>
   );

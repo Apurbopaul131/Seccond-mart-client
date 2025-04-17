@@ -136,7 +136,10 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
       <div className="grid grid-cols-5 gap-3 my-10">
         <div className="col-span-5 md:col-span-3 border-2 bg-white rounded-md">
           <Image
-            src={product?.images[0]}
+            src={
+              product?.images[0] ||
+              "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"
+            }
             alt={product?.title}
             height={400}
             width={800}

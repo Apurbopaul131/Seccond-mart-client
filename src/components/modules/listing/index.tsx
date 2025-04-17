@@ -58,12 +58,16 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
           <Image
-            src={row.original.images[0]}
+            src={
+              row.original.images[0] ||
+              "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"
+            }
             alt={row.original.title}
             width={40}
             height={40}
             className="w-8 h-8 rounded-full"
           />
+
           <span className="truncate">{row.original.title}</span>
         </div>
       ),
