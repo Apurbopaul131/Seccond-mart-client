@@ -48,7 +48,7 @@ const ShowMessage = ({ messages }: { messages: IMessage[] }) => {
       receiverID,
       ...data,
     };
-    console.log(modifiedData);
+
     try {
       const result = await sendMessage(modifiedData);
       if (result?.success) {

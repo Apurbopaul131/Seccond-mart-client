@@ -281,7 +281,15 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
               </DialogContent>
             </Dialog>
           </div>
-          <div className="px-5 flex justify-center items-center gap-3 text-muted-foreground">
+          {user?.userId && user?.userId === product?.userId?._id && (
+            <div className="px-5">
+              <p className="p-3 bg-red-100 rounded-md  text-red-500">
+                warning:User can not purchase,add wishlist and chat for his own
+                product
+              </p>
+            </div>
+          )}
+          <div className="px-5 pt-5 flex justify-center items-center gap-3 text-muted-foreground">
             <div
               onClick={() =>
                 handleAddToWishList(product?._id, product?.userId._id)
