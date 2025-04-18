@@ -1,4 +1,4 @@
-# SECCONDMart FRONTEND
+# SECCONDMART FRONTEND
 
 ### 1.Project Name: SeccondMart
 
@@ -68,15 +68,24 @@ npm install
 yarn install
 ```
 
-### 7. Run the Project
+### 4. Set Up Environment Variables
+
+Create a .env file in the root directory of the project and add the following environment variables to configure your application:
+
+```javascript
+//.env
+NEXT_PUBLIC_BASE_API=https://seccond-hand-server.vercel.app/api
+```
+
+### 5. Run the Project
 
 ```javascript
 //development mode
 npm run dev
 ```
 
-### Frontend live link: https://stationary-shop-client-one.vercel.app
+### Frontend live link: https://seccond-hand-client.vercel.app
 
-### project presentation vedio link:
+### project presentation vedio link: https://drive.google.com/file/d/1YVAq-MsVirrI2FRFQ00KNgKP9OqKNFI7/view?usp=sharing
 
-Go to stationary-shop backend source code using [SECCONDMART-BACKEND](https://github.com/Apurbopaul131/Seccond-mart-server.git)
+Go to seccond mart backend source code using [SECCONDMART-BACKEND](https://github.com/Apurbopaul131/Seccond-mart-server.git)
