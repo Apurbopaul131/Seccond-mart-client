@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+//create product validation schema
 export const addListingSchema = z.object({
   title: z.string().min(1, "Product Name is required"),
   description: z.string().min(1, "Description is required"),

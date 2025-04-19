@@ -110,9 +110,13 @@ const ProductsContainer = ({ products }: { products: IProduct[] }) => {
         </div>
         <div className="col-span-3 md:col-span-4 space-y-3">
           <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {products?.map((product, idx) => (
-              <ProductCard key={idx} product={product}></ProductCard>
-            ))}
+            {products?.length ? (
+              products?.map((product, idx) => (
+                <ProductCard key={idx} product={product}></ProductCard>
+              ))
+            ) : (
+              <h1>No result</h1>
+            )}
           </div>
         </div>
       </div>
