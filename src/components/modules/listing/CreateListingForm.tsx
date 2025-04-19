@@ -88,7 +88,7 @@ export default function CreateListingForm() {
       <div className="flex items-center space-x-4 mb-5 ">
         <Logo />
 
-        <h1 className="text-xl font-bold">Add Product</h1>
+        <h1 className="text-xl font-bold">Post your Product</h1>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>

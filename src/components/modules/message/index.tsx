@@ -62,7 +62,7 @@ const ShowMessage = ({ messages }: { messages: IMessage[] }) => {
     }
   };
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid grid-cols-3 gap-3">
       {messages?.map((message, idx) => (
         <div
           className="p-3 bg-gray-500 text-muted rounded-md shadow-lg space-y-1"
