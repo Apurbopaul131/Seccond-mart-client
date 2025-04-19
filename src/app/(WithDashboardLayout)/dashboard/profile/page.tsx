@@ -4,6 +4,7 @@ import { getSingleUser } from "@/services/profile";
 import { IUser } from "@/types";
 import { Metadata } from "next";
 
+//metadata
 export const metadata: Metadata = {
   title: "SeccondMart | Profile",
   description: "This is Profile page of seccond mart project",

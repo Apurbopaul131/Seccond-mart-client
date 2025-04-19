@@ -2,6 +2,7 @@ import OrderVerification from "@/components/modules/transaction";
 import { paymentVerification } from "@/services/transactions";
 import { Metadata } from "next";
 
+//metadata
 export const metadata: Metadata = {
   title: "SeccondMart | Payment verify",
   description: "This is payment verify of seccond mart project",

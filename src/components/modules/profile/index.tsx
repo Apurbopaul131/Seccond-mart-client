@@ -28,6 +28,8 @@ import { toast } from "sonner";
 
 export default function UserProfileForm({ user }: { user: IUser }) {
   const [enableEdit, setEnableEdit] = useState(false);
+
+  //Initialize react-hook-form with deafacult values
   const form = useForm({
     defaultValues: {
       name: user?.name || "",
@@ -37,13 +39,17 @@ export default function UserProfileForm({ user }: { user: IUser }) {
     },
   });
 
+  //extract the form state
   const {
     formState: { isSubmitting },
   } = form;
 
+  //enbale edit of the user
   const handleEnableEdit = () => {
     setEnableEdit(true);
   };
+
+  //Handle edit of the user information
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setEnableEdit(false);
     try {

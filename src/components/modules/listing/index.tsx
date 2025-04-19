@@ -17,6 +17,7 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
+  //handle mark as sold product
   const handleMarkAsSold = async (productId: string) => {
     try {
       const result = await MarkAsSolidListing(productId);
@@ -30,6 +31,7 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
     }
   };
 
+  //Handle delation of the product
   const handleDelete = (id: string) => {
     setSelectedId(id);
     setModalOpen(true);

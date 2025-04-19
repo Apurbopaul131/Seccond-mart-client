@@ -4,6 +4,7 @@ import Supporters from "@/components/modules/home/Supporters";
 import WhyTheyLoveUs from "@/components/modules/home/WhyTheyLoveUs";
 import { Metadata } from "next";
 
+//meatadata
 export const metadata: Metadata = {
   title: "SeccondMart | About",
   description: "This is about page of seccond mart project.",

@@ -12,6 +12,7 @@ const ViewListingPage = async (props: {
     page?: string;
   }>;
 }) => {
+  //extact search params obj and create url to navigate
   const searchObj = await props.searchParams;
 
   const params = new URLSearchParams(searchObj);

@@ -44,6 +44,8 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
   const [viewNumber, setNumberView] = useState(false);
   const { user } = useUser();
   const router = useRouter();
+
+  //validatin schema
   const formSchema = z.object({
     message: z
       .string({
@@ -52,6 +54,8 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
       })
       .min(1, { message: "Mesage length must be one" }),
   });
+
+  //initialize react hook form with defacult values
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
       message: "",
@@ -59,6 +63,7 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
     resolver: zodResolver(formSchema),
   });
 
+  //Handle sending query from buyer
   const handleMessageSubmit = async (data: z.infer<typeof formSchema>) => {
     if (!user?.userId) {
       toast.error("You are not Authorized.please login...");
@@ -82,6 +87,8 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
       }
     }
   };
+
+  //Handle wishlist of buyer
   const handleAddToWishList = async (
     productId: string,
     productUserId: string
@@ -108,6 +115,8 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
       }
     }
   };
+
+  //Handle proceed order
   const handleProceedOrder = async (product: IProduct) => {
     try {
       if (!user?.userId) {

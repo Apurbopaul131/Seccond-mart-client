@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+//login valdation schema
 export const loginSchema = z.object({
   email: z
     .string({ required_error: "Email is required" })

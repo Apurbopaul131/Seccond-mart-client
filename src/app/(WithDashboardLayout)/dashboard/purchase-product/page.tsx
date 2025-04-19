@@ -11,7 +11,10 @@ export const metadata: Metadata = {
 };
 const PurchaseProductPage = async () => {
   const { userId } = (await currentUser()) as IUser;
+  //extract all purchase product
   const { data } = await getAllPurchases(userId);
+
+  //filter tranaction already completed product
   const transactions = (data as ITransaction[]).filter(
     (transaction) => transaction.status === "completed"
   );

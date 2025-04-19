@@ -2,6 +2,7 @@ import UpdateListingForm from "@/components/modules/listing/UpdateListingForm";
 import { getSingleListing } from "@/services/listing";
 import { IProduct } from "@/types";
 
+//ssg for every product
 export const generateStaticParams = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings`);
   const { data: projects } = await res.json();
@@ -10,6 +11,8 @@ export const generateStaticParams = async () => {
     id: project?._id,
   }));
 };
+
+//generate metadata for every product
 export const generateMetadata = async ({
   params,
 }: {
@@ -28,7 +31,10 @@ const UpdateSigngleListingPage = async ({
 }: {
   params: Promise<{ productId: string }>;
 }) => {
+  //extact productId form params
   const { productId } = await params;
+
+  //extact specific listings
   const { data: product } = await getSingleListing(productId);
 
   return (

@@ -19,17 +19,21 @@ import { toast } from "sonner";
 import { registrationSchema } from "./registerValidation";
 
 export default function RegisterForm() {
+  //Initialize react-hook-form
   const form = useForm({
     resolver: zodResolver(registrationSchema),
   });
 
+  //extact form state
   const {
     formState: { isSubmitting },
   } = form;
 
+  //track password and confirm password
   const password = form.watch("password");
   const passwordConfirm = form.watch("passwordConfirm");
 
+  //handle registration of the user
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await registeredUser(data);

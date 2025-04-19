@@ -42,6 +42,7 @@ export default function UpdateListingForm({ product }: { product: IProduct }) {
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const currentUser = useUser();
 
+  //react-hook form with deafault values
   const form = useForm({
     defaultValues: {
       title: product?.title || "",
@@ -55,10 +56,12 @@ export default function UpdateListingForm({ product }: { product: IProduct }) {
     resolver: zodResolver(addListingSchema),
   });
 
+  //extract form state
   const {
     formState: { isSubmitting },
   } = form;
 
+  //handle update of the listings
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const imagesArr = await Promise.all(
       imageFiles?.map(async function (imageFile) {

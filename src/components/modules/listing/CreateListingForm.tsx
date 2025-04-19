@@ -40,6 +40,8 @@ export default function CreateListingForm() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const currentUser = useUser();
+
+  //Initialize react-hook-form with default values
   const form = useForm({
     defaultValues: {
       title: "",
@@ -53,10 +55,12 @@ export default function CreateListingForm() {
     resolver: zodResolver(addListingSchema),
   });
 
+  //extract form state
   const {
     formState: { isSubmitting },
   } = form;
 
+  //Handle create listing of the product
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const imagesArr = await Promise.all(
       imageFiles?.map(async function (imageFile) {

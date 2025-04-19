@@ -23,15 +23,20 @@ import { loginSchema } from "./loginValidation";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
+
+  //extact redirect path form the url
   const searchTerms = searchParams.get("redirectPath");
   const router = useRouter();
   const currentUser = useUser();
   // const [reChaptchaVerificationStatus, setReChaptchaVerificationStatus] =
   //   useState(false);
+
+  //Initialize react-hook-from
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
 
+  //extract form state
   const {
     formState: { isSubmitting },
   } = form;
@@ -45,6 +50,8 @@ export default function LoginForm() {
   //     console.error(err);
   //   }
   // };
+
+  //handle login user
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);

@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+//register validation schema
 export const registrationSchema = z.object({
   name: z
     .string({ required_error: "Name is required" })

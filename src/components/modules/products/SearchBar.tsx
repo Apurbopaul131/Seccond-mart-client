@@ -9,6 +9,8 @@ const SearchBar = ({ searchOption }: { searchOption: string }) => {
   const [searchTerm, setSearchTerm] = useState(searchOption);
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+
+  //handle search into onChange
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTermEvent = e.target.value;
     setSearchTerm(searchTermEvent);
@@ -24,6 +26,8 @@ const SearchBar = ({ searchOption }: { searchOption: string }) => {
       replace("/products");
     }
   };
+
+  //Clear the search input
   const handeSearchCross = () => {
     setSearchTerm("");
     const params = new URLSearchParams(searchParams);

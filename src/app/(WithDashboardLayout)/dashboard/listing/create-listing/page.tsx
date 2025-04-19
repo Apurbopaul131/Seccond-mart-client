@@ -1,6 +1,7 @@
 import CreateListingForm from "@/components/modules/listing/CreateListingForm";
 import { Metadata } from "next";
 
+//metadata
 export const metadata: Metadata = {
   title: "SeccondMart | Create Listing",
   description: "This is login page of seccond mart project",

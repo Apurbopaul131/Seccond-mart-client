@@ -18,10 +18,12 @@ const AllProductPage = async (props: {
     category?: string;
   }>;
 }) => {
+  //retrive search params obj and create url to navigate
   const searchObj = await props.searchParams;
-
   const params = new URLSearchParams(searchObj);
   const query = params.toString() ? `?${params.toString()}` : "";
+
+  //retrive all listings with search query parameter
   const { data: products, meta } = await getAllListing(query);
   return (
     <div className="mb-10">
