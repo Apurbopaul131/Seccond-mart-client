@@ -40,6 +40,14 @@
 - Mongoose
 - MongoDB
 
+### 5. Challenges:
+
+During implementation, integrating effective search functionality was challenging due to the need for optimized keyword matching across multiple fields like title, category, and description. Filtering required careful handling of dynamic query parameters to ensure smooth and accurate results. Sorting by price had to be implemented efficiently without affecting performance, especially when combined with filters. Ensuring all combinations worked together seamlessly was complex. When implementing shurjopay payment integration method there is no type support.So, we need to create an type by manually that was too much hard.The shurjopay authority provide some incorrect output data that occured bugs when check payment is success or not.
+
+### 6.Future Scope:
+
+To enhance the current second-hand product selling platform, future work could focus on incorporating AI-powered product recommendations to improve the user shopping experience. Implementing a real-time chat feature between buyers and sellers would streamline communication and build trust. Adding multi-language support can broaden the platform’s accessibility to users from different regions. Introducing seller verification and product authenticity checks would boost buyer confidence and reduce fraud. Additionally, integrating a review and rating system for both buyers and sellers can help build credibility
+
 ## How to locally run the Frontend:
 
 ### 1. Clone the Repository
