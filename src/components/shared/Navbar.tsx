@@ -56,7 +56,7 @@ const Navbar = () => {
               <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold flex gap-1 items-center">
                   <Logo />
-                  SecondMart
+                  SeccondMart
                 </h1>
               </div>
               <nav className="mt-6 flex flex-col space-y-4 text-lg font-medium text-gray-900">
@@ -129,7 +129,13 @@ const Navbar = () => {
                       <DropdownMenuItem>Profile</DropdownMenuItem>
                     </Link>
 
-                    <Link href={"/dashboard"}>
+                    <Link
+                      href={
+                        currentUser?.user?.role === "user"
+                          ? "/dashboard"
+                          : "/dashboard/admin"
+                      }
+                    >
                       <DropdownMenuItem>Dashboard</DropdownMenuItem>
                     </Link>
                     <Link href={"/dashboard/wishlist"}>

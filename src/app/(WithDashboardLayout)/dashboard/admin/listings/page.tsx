@@ -1,8 +1,13 @@
 import ManageListing from "@/components/modules/listing";
 import SMPagination from "@/components/ui/core/SMPagination";
 import { getAllListing } from "@/services/listing";
+import { Metadata } from "next";
 
-const AdminPage = async (props: {
+export const metadata: Metadata = {
+  title: "SeccondMart | Listing",
+  description: "This is manage listing page of seccond mart project",
+};
+const AdminListingPage = async (props: {
   searchParams?: Promise<{
     page?: string;
   }>;
@@ -20,4 +25,4 @@ const AdminPage = async (props: {
   );
 };
 
-export default AdminPage;
+export default AdminListingPage;

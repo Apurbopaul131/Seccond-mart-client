@@ -1,12 +1,12 @@
-import BrandLogo from "@/app/assets/logo.jpg";
+import BrandLogo from "@/app/assets/logo-transparent.png";
 import Image from "next/image";
 const Logo = () => {
   return (
     <Image
       src={BrandLogo}
       alt="brand-logo"
-      width={35}
-      height={24}
+      width={60}
+      height={44}
       className="rounded-sm"
     ></Image>
   );

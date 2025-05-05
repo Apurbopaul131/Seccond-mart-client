@@ -22,78 +22,138 @@ import * as React from "react";
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
   const { user } = useUser();
-  const data = {
-    user: {
-      name: user?.name as string,
-      email: user?.email as string,
-      avatar: "/avatars/shadcn.jpg",
-    },
-    navMain: [
-      {
-        title: "Dashboard",
-        url: "/dashboard",
-        icon: SquareTerminal,
-        isActive: true,
-      },
-      {
-        title: "Shop",
-        url: "#",
-        icon: Bot,
-        items: [
-          {
-            title: "Manage Listing",
-            url: "/dashboard/listing",
+  const data =
+    user?.role === "user"
+      ? {
+          user: {
+            name: user?.name as string,
+            email: user?.email as string,
+            avatar: "/avatars/shadcn.jpg",
           },
-          {
-            title: "Track Sales",
-            url: "/dashboard/sales-history",
-          },
-          {
-            title: "Track Purchase",
-            url: "/dashboard/purchase-history",
-          },
-          {
-            title: "Manage Wishlist",
-            url: "/dashboard/wishlist",
-          },
-        ],
-      },
+          navMain: [
+            {
+              title: "Dashboard",
+              url: "/dashboard",
+              icon: SquareTerminal,
+              isActive: true,
+            },
+            {
+              title: "Shop",
+              url: "#",
+              icon: Bot,
+              items: [
+                {
+                  title: "Manage Listing",
+                  url: "/dashboard/listing",
+                },
+                {
+                  title: "Track Sales",
+                  url: "/dashboard/sales-history",
+                },
+                {
+                  title: "Track Purchase",
+                  url: "/dashboard/purchase-history",
+                },
+                {
+                  title: "Manage Wishlist",
+                  url: "/dashboard/wishlist",
+                },
+              ],
+            },
 
-      {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
-        items: [
-          {
-            title: "Profile",
-            url: "/dashboard/profile",
+            {
+              title: "Settings",
+              url: "#",
+              icon: Settings,
+              items: [
+                {
+                  title: "Profile",
+                  url: "/dashboard/profile",
+                },
+              ],
+            },
+            {
+              title: "Communication & Transactions",
+              url: "#",
+              icon: MessageCircle,
+              items: [
+                {
+                  title: "Track Sold Product",
+                  url: "/dashboard/sold-product",
+                },
+                {
+                  title: "Track Purchase Product",
+                  url: "/dashboard/purchase-product",
+                },
+                {
+                  title: "Messages",
+                  url: "/messages",
+                },
+              ],
+            },
+          ],
+        }
+      : {
+          user: {
+            name: user?.name as string,
+            email: user?.email as string,
+            avatar: "/avatars/shadcn.jpg",
           },
-        ],
-      },
-      {
-        title: "Communication & Transactions",
-        url: "#",
-        icon: MessageCircle,
-        items: [
-          {
-            title: "Track Sold Product",
-            url: "/dashboard/sold-product",
-          },
-          {
-            title: "Track Purchase Product",
-            url: "/dashboard/purchase-product",
-          },
-          {
-            title: "Messages",
-            url: "/messages",
-          },
-        ],
-      },
-    ],
-  };
+          navMain: [
+            {
+              title: "Dashboard",
+              url: "/dashboard",
+              icon: SquareTerminal,
+              isActive: true,
+            },
+            {
+              title: "Shop",
+              url: "#",
+              icon: Bot,
+              items: [
+                {
+                  title: "Manage Listing",
+                  url: "/dashboard/admin/listings",
+                },
+                {
+                  title: "Track Sales",
+                  url: "/dashboard/sales-history",
+                },
+                {
+                  title: "Track Purchase",
+                  url: "/dashboard/purchase-history",
+                },
+                {
+                  title: "Manage Users",
+                  url: "/dashboard/admin/user-management",
+                },
+              ],
+            },
+
+            {
+              title: "Communication & Transactions",
+              url: "#",
+              icon: MessageCircle,
+              items: [
+                {
+                  title: "Track Sold Product",
+                  url: "/dashboard/sold-product",
+                },
+                {
+                  title: "Track Purchase Product",
+                  url: "/dashboard/purchase-product",
+                },
+                {
+                  title: "Messages",
+                  url: "/messages",
+                },
+              ],
+            },
+          ],
+        };
 
   return (
-    <Sidebar className="bg-gray-500 text-muted" collapsible="icon" {...props}>
+    <Sidebar className="bg-muted" collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem

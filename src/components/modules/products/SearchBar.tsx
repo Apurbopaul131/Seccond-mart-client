@@ -2,13 +2,14 @@
 
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-const SearchBar = ({ searchOption }: { searchOption: string }) => {
-  const [searchTerm, setSearchTerm] = useState(searchOption);
+const SearchBar = ({ searchOption }: { searchOption?: string }) => {
+  const [searchTerm, setSearchTerm] = useState(searchOption || "");
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+  const pathname = usePathname();
 
   //handle search into onChange
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,9 +22,9 @@ const SearchBar = ({ searchOption }: { searchOption: string }) => {
       params.delete("searchTerm");
     }
     if (params.toString()) {
-      replace(`/products?${params.toString()}`);
+      replace(`${pathname}?${params.toString()}`);
     } else {
-      replace("/products");
+      replace(pathname);
     }
   };
 
@@ -33,26 +34,28 @@ const SearchBar = ({ searchOption }: { searchOption: string }) => {
     const params = new URLSearchParams(searchParams);
     params.delete("searchTerm");
     if (params.toString()) {
-      replace(`/products?${params.toString()}`);
+      replace(`${pathname}?${params.toString()}`);
     } else {
-      replace("/products");
+      replace(pathname);
     }
   };
   return (
     <div className="w-full bg-gray-200 p-6 my-5">
-      <Input
-        type="text"
-        placeholder="Search..."
-        className="border-2 border-secondary p-6 focus:ring-0 flex-grow px-3 bg-white relative"
-        value={searchTerm}
-        onChange={handleChange}
-      />
-      <button
-        onClick={handeSearchCross}
-        className="ml-2 text-gray-500 hover:text-gray-700 absolute right-10 top-32"
-      >
-        <X className="w-4 h-4" />
-      </button>
+      <div className="relative w-full">
+        <Input
+          type="text"
+          placeholder="Search..."
+          className="border-2 border-secondary p-6 pe-10 w-full bg-white"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+        <button
+          onClick={handeSearchCross}
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 };

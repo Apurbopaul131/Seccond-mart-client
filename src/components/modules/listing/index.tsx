@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import DeleteConfirmationModal from "@/components/ui/core/SMModal/DeleteConfirmModal";
 import { SMTable } from "@/components/ui/core/SMTable";
+import { useUser } from "@/context/UserContext";
 import { deleteListing, MarkAsSolidListing } from "@/services/listing";
 import { IProduct } from "@/types";
 
@@ -11,11 +12,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import SearchBar from "../products/SearchBar";
 
 const ManageListing = ({ products }: { products: IProduct[] }) => {
   const router = useRouter();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const currentUser = useUser();
 
   //handle mark as sold product
   const handleMarkAsSold = async (productId: string) => {
@@ -104,14 +107,15 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
       header: "Action",
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
-          <Button
-            className="text-primary-foreground cursor-pointer"
-            title="mark as sold"
-            disabled={row.original.status === "sold" ? true : false}
-            onClick={() => handleMarkAsSold(row.original._id)}
-          >
-            Mark Sold
-          </Button>
+          {currentUser?.user?.role === "user" && (
+            <button
+              className="text-gray-500 cursor-pointer hover:text-green-500"
+              title="Mark as Sold"
+              onClick={() => handleMarkAsSold(row.original._id)}
+            >
+              <span className="text-sm font-semibold">Mark as Sold</span>
+            </button>
+          )}
           <button
             className="text-gray-500 cursor-pointer hover:text-green-500"
             title="view"
@@ -120,18 +124,19 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
             <Eye className="w-5 h-5" />
           </button>
 
-          <button
-            className="text-gray-500 cursor-pointer hover:text-green-500"
-            title="Edit"
-            onClick={() =>
-              router.push(
-                `/dashboard/listing/update-listing/${row.original._id}`
-              )
-            }
-          >
-            <Edit className="w-5 h-5" />
-          </button>
-
+          {currentUser?.user?.role === "user" && (
+            <button
+              className="text-gray-500 cursor-pointer hover:text-blue-500"
+              title="Edit"
+              onClick={() =>
+                router.push(
+                  `/dashboard/listing/edit-listing/${row.original._id}`
+                )
+              }
+            >
+              <Edit className="w-5 h-5" />
+            </button>
+          )}
           <button
             className="text-gray-500 cursor-pointer hover:text-red-500"
             title="Delete"
@@ -147,16 +152,19 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold">Manage Products</h1>
-        <div className="flex items-center gap-2">
-          <Button
-            onClick={() => router.push("/dashboard/listing/create-listing")}
-            size="sm"
-            className="cursor-pointer"
-          >
-            Add Product <Plus />
-          </Button>
-        </div>
+        {currentUser?.user?.role === "user" && (
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={() => router.push("/dashboard/listing/create-listing")}
+              size="sm"
+              className="cursor-pointer"
+            >
+              Add Product <Plus />
+            </Button>
+          </div>
+        )}
       </div>
+      <SearchBar />
       <SMTable columns={columns} data={products || []} />
       <DeleteConfirmationModal
         isOpen={isModalOpen}
