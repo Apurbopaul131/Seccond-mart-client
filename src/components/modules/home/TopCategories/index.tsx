@@ -48,7 +48,7 @@ const TopCategories = () => {
   };
   return (
     <div className="bg-gray-50 py-10">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-3">
         <h2 className="text-2xl font-bold mb-8 text-center">Top Category</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {categories.map((category, index) => {

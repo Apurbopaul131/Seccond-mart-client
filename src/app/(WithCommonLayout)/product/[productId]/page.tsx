@@ -1,5 +1,5 @@
 import ProductDetails from "@/components/modules/product";
-import { getSingleListing } from "@/services/listing";
+import { getAllListing, getSingleListing } from "@/services/listing";
 import { IProduct } from "@/types";
 
 //ssg for every product
@@ -35,10 +35,13 @@ const SingleProductPage = async ({
   const { productId } = await params;
   //Retrive specific listing
   const { data: product } = await getSingleListing(productId);
+  const { data: products } = await getAllListing(
+    `?category=${product?.category}`
+  );
 
   return (
     <div>
-      <ProductDetails product={product} />
+      <ProductDetails product={product} products={products} />
     </div>
   );
 };

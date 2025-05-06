@@ -1,6 +1,7 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import ProductCard from "@/components/ui/core/ProductCard";
 import {
   Dialog,
   DialogContent,
@@ -40,7 +41,13 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const ProductDetails = ({ product }: { product: IProduct }) => {
+const ProductDetails = ({
+  product,
+  products,
+}: {
+  product: IProduct;
+  products: IProduct[];
+}) => {
   const [viewNumber, setNumberView] = useState(false);
   const { user } = useUser();
   const router = useRouter();
@@ -140,9 +147,10 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
       console.error(error);
     }
   };
+
   return (
-    <div className="w-[90%] md:container mx-auto">
-      <div className="grid grid-cols-5 gap-3 my-10">
+    <div className="w-[90%] md:container mx-auto px-3 my-10">
+      <div className="grid grid-cols-5 gap-3">
         <div className="col-span-5 md:col-span-3 border-2 bg-white rounded-md">
           <Image
             src={
@@ -317,6 +325,15 @@ const ProductDetails = ({ product }: { product: IProduct }) => {
               <Instagram className="w-6 h-6" />
             </div>
           </div>
+        </div>
+      </div>
+      <div className="mt-10">
+        <h2 className="font-bold text-2xl">Related Products</h2>
+
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:gap-8 mt-5">
+          {products?.slice(0, 5).map((product: IProduct, idx: number) => (
+            <ProductCard key={idx} product={product} />
+          ))}
         </div>
       </div>
     </div>
