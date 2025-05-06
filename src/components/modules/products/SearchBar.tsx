@@ -5,7 +5,13 @@ import { X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-const SearchBar = ({ searchOption }: { searchOption?: string }) => {
+const SearchBar = ({
+  searchOption,
+  placeholderKey,
+}: {
+  searchOption?: string;
+  placeholderKey?: string;
+}) => {
   const [searchTerm, setSearchTerm] = useState(searchOption || "");
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -44,7 +50,7 @@ const SearchBar = ({ searchOption }: { searchOption?: string }) => {
       <div className="relative w-full">
         <Input
           type="text"
-          placeholder="Search..."
+          placeholder={placeholderKey || "Search"}
           className="border-2 border-secondary p-6 pe-10 w-full bg-white"
           value={searchTerm}
           onChange={handleChange}

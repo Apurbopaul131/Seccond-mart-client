@@ -103,7 +103,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
       <CardFooter className="block p-0">
         <div className="flex gap-2 items-center justify-between">
           <Link href={`/product/${product._id}`}>
-            <Button size="sm" className="rounded-full cursor-pointer">
+            <Button size="sm" className="rounded-md cursor-pointer">
               View Details
             </Button>
           </Link>

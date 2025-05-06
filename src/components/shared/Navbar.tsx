@@ -61,6 +61,7 @@ const Navbar = () => {
               </div>
               <nav className="mt-6 flex flex-col space-y-4 text-lg font-medium text-gray-900">
                 <Link href="/">Home</Link>
+                <Link href="/products">Listing</Link>
                 <Link href="/about">About</Link>
                 <Link href="/contact">Contact</Link>
                 <Link href="/faq">FAQ</Link>
@@ -81,6 +82,7 @@ const Navbar = () => {
           </h1>
           <div className="hidden  md:flex items-center gap-3 text-primary-foreground font-semibold">
             <Link href={"/"}>Home</Link>
+            <Link href="/products">Listing</Link>
             <Link href={"/about"}>About</Link>
             <Link href={"/contact"}>Contact</Link>
             <Link href={"/faq"}>FAQ</Link>
@@ -125,7 +127,13 @@ const Navbar = () => {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
-                    <Link href={"/dashboard/profile"}>
+                    <Link
+                      href={
+                        currentUser?.user?.role === "user"
+                          ? "/dashboard/profile"
+                          : "/dashboard/admin/profile"
+                      }
+                    >
                       <DropdownMenuItem>Profile</DropdownMenuItem>
                     </Link>
 
@@ -138,9 +146,11 @@ const Navbar = () => {
                     >
                       <DropdownMenuItem>Dashboard</DropdownMenuItem>
                     </Link>
-                    <Link href={"/dashboard/wishlist"}>
-                      <DropdownMenuItem>My Wishlist</DropdownMenuItem>
-                    </Link>
+                    {currentUser?.user?.role === "user" && (
+                      <Link href={"/dashboard/wishlist"}>
+                        <DropdownMenuItem>My Wishlist</DropdownMenuItem>
+                      </Link>
+                    )}
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem

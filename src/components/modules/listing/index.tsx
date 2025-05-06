@@ -6,6 +6,7 @@ import { useUser } from "@/context/UserContext";
 import { deleteListing, MarkAsSolidListing } from "@/services/listing";
 import { IProduct } from "@/types";
 
+import FilterCategory from "@/components/ui/core/FilterCategory";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Eye, Plus, Trash } from "lucide-react";
 import Image from "next/image";
@@ -165,6 +166,7 @@ const ManageListing = ({ products }: { products: IProduct[] }) => {
         )}
       </div>
       <SearchBar />
+      <FilterCategory />
       <SMTable columns={columns} data={products || []} />
       <DeleteConfirmationModal
         isOpen={isModalOpen}

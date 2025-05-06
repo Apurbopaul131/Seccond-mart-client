@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "SeccondMart | Profile",
   description: "This is Profile page of seccond mart project",
 };
-const UserProfilePage = async () => {
+const AdminProfilePage = async () => {
   return (
     <div className="mx-5">
       <ShowProfile />
@@ -13,4 +13,4 @@ const UserProfilePage = async () => {
   );
 };
 
-export default UserProfilePage;
+export default AdminProfilePage;

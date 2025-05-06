@@ -30,7 +30,7 @@ const supportersLogos = [
 ];
 const Supporters = () => {
   return (
-    <div className="mb-10">
+    <div className="mb-10 container mx-auto px-4">
       <h2 className="text-4xl font-bold text-gray-900 mb-2 text-center">
         Our Supporters
       </h2>

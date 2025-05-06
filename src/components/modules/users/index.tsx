@@ -9,6 +9,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Eye, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import SearchBar from "../products/SearchBar";
 
 const ManageUsers = ({ users }: { users: IUser[] }) => {
   //   const router = useRouter();
@@ -99,6 +100,7 @@ const ManageUsers = ({ users }: { users: IUser[] }) => {
   ];
   return (
     <div className="space-y-3">
+      <SearchBar />
       <SMTable columns={columns} data={users || []} />
       <DeleteConfirmationModal
         isOpen={isModalOpen}

@@ -30,16 +30,16 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="pb-16 pt-8 bg-white text-center">
+    <section className="mb-10 bg-white text-center">
       <div className="max-w-6xl mx-auto px-4">
         <Button className="text-sm p-2 px-3 text-white font-medium bg-secondary hover:bg-secondary mb-2">
           What our sellers say
         </Button>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10">
+        <h2 className="text-2xl font-bold text-gray-800 ">
           How Second BD Works
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mt-5">
           {steps.map((step, index) => (
             <Card key={index}>
               <CardContent className="flex flex-col items-center gap-4 py-8 px-4">

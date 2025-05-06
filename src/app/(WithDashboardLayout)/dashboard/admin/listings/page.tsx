@@ -20,7 +20,7 @@ const AdminListingPage = async (props: {
   return (
     <div className="mx-5 space-y-3">
       <ManageListing products={products} />
-      <SMPagination totalPage={meta?.totalPage} />
+      {products.length > 0 && <SMPagination totalPage={meta?.totalPage} />}
     </div>
   );
 };

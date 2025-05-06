@@ -70,6 +70,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   title: "Profile",
                   url: "/dashboard/profile",
                 },
+                {
+                  title: "Edit Profile",
+                  url: "/dashboard/edit-profile",
+                },
               ],
             },
             {
@@ -102,7 +106,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           navMain: [
             {
               title: "Dashboard",
-              url: "/dashboard",
+              url: "/dashboard/admin",
               icon: SquareTerminal,
               isActive: true,
             },
@@ -115,14 +119,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   title: "Manage Listing",
                   url: "/dashboard/admin/listings",
                 },
-                {
-                  title: "Track Sales",
-                  url: "/dashboard/sales-history",
-                },
-                {
-                  title: "Track Purchase",
-                  url: "/dashboard/purchase-history",
-                },
+
                 {
                   title: "Manage Users",
                   url: "/dashboard/admin/user-management",
@@ -131,21 +128,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             },
 
             {
-              title: "Communication & Transactions",
+              title: "Settings",
               url: "#",
-              icon: MessageCircle,
+              icon: Settings,
               items: [
                 {
-                  title: "Track Sold Product",
-                  url: "/dashboard/sold-product",
+                  title: "Profile",
+                  url: "/dashboard/admin/profile",
                 },
                 {
-                  title: "Track Purchase Product",
-                  url: "/dashboard/purchase-product",
-                },
-                {
-                  title: "Messages",
-                  url: "/messages",
+                  title: "Edit Profile",
+                  url: "/dashboard/admin/edit-profile",
                 },
               ],
             },

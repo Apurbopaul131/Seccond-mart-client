@@ -4,6 +4,7 @@ import { ITransaction } from "@/types/transaction";
 
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
+import SearchBar from "../products/SearchBar";
 
 const SalesHistory = ({ trnasactions }: { trnasactions: ITransaction[] }) => {
   const columns: ColumnDef<ITransaction>[] = [
@@ -61,6 +62,7 @@ const SalesHistory = ({ trnasactions }: { trnasactions: ITransaction[] }) => {
   return (
     <div className="space-y-3">
       <h1 className="text-xl font-bold">Sales History</h1>
+      <SearchBar placeholderKey="Search by TrnxID" />
       <SMTable columns={columns} data={trnasactions || []} />
     </div>
   );

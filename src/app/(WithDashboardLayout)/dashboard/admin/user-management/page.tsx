@@ -20,7 +20,7 @@ const ManageUsersPage = async (props: {
   return (
     <div className="mx-5 space-y-3">
       <ManageUsers users={users}></ManageUsers>
-      <SMPagination totalPage={meta?.totalPage} />
+      {users.length > 0 && <SMPagination totalPage={meta?.totalPage} />}
     </div>
   );
 };

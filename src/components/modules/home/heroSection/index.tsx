@@ -62,10 +62,14 @@ const HeroSection = () => {
     }
   };
   return (
-    <div className={`${styles.banner}`}>
-      <div className="flex justify-center items-center h-full">
+    <div className={`${styles.banner} relative`}>
+      <div className="absolute inset-0 bg-black opacity-70 z-0"></div>
+      <div
+        className="relative flex justify-center items-center h-full z-10
+      "
+      >
         <div className="">
-          <h1 className="text-7xl text-secondary font-bold leading-16 text-center">
+          <h1 className="text-7xl text-secondary font-bold leading-16 text-center drop-shadow-lg">
             Seccond Mart
             <br /> <span className="text-primary">Bangladeh</span>
           </h1>

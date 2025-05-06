@@ -2,10 +2,10 @@
 
 import { cookies } from "next/headers";
 
-export const getAllSales = async (sellerID: string) => {
+export const getAllSales = async (sellerID: string, query: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/sales/${sellerID}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/sales/${sellerID}${query}`,
       {
         method: "GET",
         headers: {
@@ -20,10 +20,10 @@ export const getAllSales = async (sellerID: string) => {
     return new Error(error);
   }
 };
-export const getAllPurchases = async (buyerId: string) => {
+export const getAllPurchases = async (buyerId: string, query: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/purchases/${buyerId}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/purchases/${buyerId}${query}`,
       {
         method: "GET",
         headers: {
