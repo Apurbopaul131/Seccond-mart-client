@@ -39,7 +39,7 @@ const Navbar = () => {
     }, 200);
   };
   return (
-    <header className="w-full bg-primary">
+    <header className="w-full bg-primary sticky top-0 z-50 shadow-md">
       <div className="container flex justify-between items-center mx-auto h-16 px-3">
         <div className="flex items-center gap-12">
           <Sheet>

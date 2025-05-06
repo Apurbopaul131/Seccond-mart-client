@@ -3,6 +3,7 @@ import FeaturedProducts from "@/components/modules/home/featuredProducts";
 import HeroSection from "@/components/modules/home/heroSection";
 import HowItWorks from "@/components/modules/home/HowItWorks";
 import Supporters from "@/components/modules/home/Supporters";
+import TopCategories from "@/components/modules/home/TopCategories";
 import WhyTheyLoveUs from "@/components/modules/home/WhyTheyLoveUs";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -16,6 +17,7 @@ export default function HomePage() {
     <>
       <Suspense>
         <HeroSection />
+        <TopCategories />
         <FeaturedProducts />
         <HowItWorks />
         <WhyTheyLoveUs />

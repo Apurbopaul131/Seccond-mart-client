@@ -21,6 +21,16 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { loginSchema } from "./loginValidation";
 
+// Define demo credentials
+const demoUser = {
+  email: "apurbopaul131@gmail.com",
+  password: "apurbo123",
+};
+
+const demoAdmin = {
+  email: "tamim121@gmail.com",
+  password: "tamim123",
+};
 export default function LoginForm() {
   const searchParams = useSearchParams();
 
@@ -87,6 +97,29 @@ export default function LoginForm() {
             Join us today and start your journey!
           </p>
         </div>
+      </div>
+      <div className="space-y-2">
+        <h6 className="text-xl font-semibold">Demo credentails</h6>
+        <Button
+          type="button"
+          onClick={() => {
+            form.setValue("email", demoUser.email);
+            form.setValue("password", demoUser.password);
+          }}
+          className="rounded-md mr-3"
+        >
+          User credentails
+        </Button>
+        <Button
+          type="button"
+          onClick={() => {
+            form.setValue("email", demoAdmin.email);
+            form.setValue("password", demoAdmin.password);
+          }}
+          className="rounded-md cursor-pointer"
+        >
+          Admin credentails
+        </Button>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
